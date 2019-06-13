@@ -48,6 +48,16 @@ public class User {
 		this.phone = phone;		
 	}
 	
+	public User() {
+		this.name = "";
+		this.gender = 1;
+		this.age = 0;
+		this.password = "";
+		this.blogNum = 0;
+		this.type = 1;
+		this.phone = 0;	
+	}
+	
 	public long getUserId() {
 		return userId;
 	}

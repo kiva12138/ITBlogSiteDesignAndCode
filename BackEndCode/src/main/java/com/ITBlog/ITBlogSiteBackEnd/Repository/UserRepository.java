@@ -30,7 +30,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	 * @param password
 	 * @return User
 	 */
-	User findByNameAndPassword(String name, String password);
+	User findByNameAndPassword(String name, String password);	
 	
 	/**
 	 * 更新用户密码
@@ -72,6 +72,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	int addBlogNum(@Param ("userId")long userId);
 	
 	@Modifying
-	@Query(value="UPDATE User user SET user.type=0 WHERE user.userId=:userId")
+	@Query(value="UPDATE User user SET user.type=2 WHERE user.userId=:userId")
 	int closeAccount(@Param ("userId")long userId);
 }

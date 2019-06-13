@@ -2,6 +2,7 @@ package com.ITBlog.ITBlogSiteBackEnd.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,7 +45,7 @@ public class UserController {
 	 * 			code: 0-Correct 1-EmptyValue 2-ServiceError.
 	 * 			description: Description Of Error; if code==0 this should be NULL.
 	 */
-	@RequestMapping("/adduser")
+	@RequestMapping(value = "/adduser", method = RequestMethod.POST)
 	public UserResponse addUser(@RequestParam String name,
 								@RequestParam int gender, 
 								@RequestParam int age, 
@@ -54,7 +55,7 @@ public class UserController {
 		
 		if(name == null || password == null) {
 			userResponse.setCode(1);
-			userResponse.setDescription("Empty Value!");
+			userResponse.setDescription("Empty Value1!");
 			return userResponse;
 		}else {
 			name = name.trim();
@@ -62,9 +63,9 @@ public class UserController {
 		}
 		
 		// Judge Empty Values
-		if(name == "" || gender != 1 || gender != 2 || age == 0 || password == "" || phone == 0) {
+		if(name == "" || (gender != 1 && gender != 2) || age == 0 || password == "" || phone == 0) {
 			userResponse.setCode(1);
-			userResponse.setDescription("Empty Value!");
+			userResponse.setDescription("Empty Value2!");
 			return userResponse;
 		}
 		
@@ -87,7 +88,7 @@ public class UserController {
 	 * 			code: 0-Correct 1-EmptyValue 2-ServiceError.
 	 * 			description: Description Of Error; if code==0 this should be NULL.
 	 */
-	@RequestMapping("/deleteuser")
+	@RequestMapping(value = "/deleteuser", method = RequestMethod.GET)
 	public UserResponse deleteUser(@RequestParam long userId) {
 		UserResponse userResponse = new UserResponse();
 		
@@ -117,7 +118,7 @@ public class UserController {
 	 * 			code: 0-Correct 1-EmptyValue 2-ServiceError.
 	 * 			description: Description Of Error; if code==0 this should be NULL.
 	 */
-	@RequestMapping("/closeaccount")
+	@RequestMapping(value = "/closeaccount", method = RequestMethod.GET)
 	public UserResponse closeAccount(@RequestParam long userId) {
 		UserResponse userResponse = new UserResponse();
 		
@@ -148,7 +149,7 @@ public class UserController {
 	 * 			code: 0-Correct 1-EmptyValue 2-ServiceError.
 	 * 			description: Description Of Error; if code==0 this should be NULL.
 	 */
-	@RequestMapping("/updatepassword")
+	@RequestMapping(value = "/updatepassword", method = RequestMethod.POST)
 	public UserResponse updatePassword(@RequestParam long userId,
 										@RequestParam String password) {
 		UserResponse userResponse = new UserResponse();
@@ -187,7 +188,7 @@ public class UserController {
 	 * 			code: 0-Correct 1-EmptyValue 2-ServiceError.
 	 * 			description: Description Of Error; if code==0 this should be NULL.
 	 */
-	@RequestMapping("/updateage")
+	@RequestMapping(value = "/updateage", method = RequestMethod.POST)
 	public UserResponse updateAge(@RequestParam long userId,
 										@RequestParam int age) {
 		UserResponse userResponse = new UserResponse();
@@ -219,7 +220,7 @@ public class UserController {
 	 * 			description: Description Of Error; if code==0 this should be NULL.
 	 * 			userInfo: userId, age, gender, blogNum, phone
 	 */
-	@RequestMapping("/getuserbyuserid")
+	@RequestMapping(value = "/getuserbyuserid", method = RequestMethod.GET)
 	public GetUserResponse getUserByUserId(@RequestParam long userId) {
 		GetUserResponse getUserResponse = new GetUserResponse();
 		
@@ -240,6 +241,7 @@ public class UserController {
 		getUserResponse.setGender(user.getGender());
 		getUserResponse.setName(user.getName());
 		getUserResponse.setPhone(user.getPhone());
+		getUserResponse.setAge(user.getAge());
 		getUserResponse.setUserId(userId);
 		getUserResponse.setBlogNum(user.getBlogNum());
 		return getUserResponse;
@@ -254,7 +256,7 @@ public class UserController {
 	 * 			description: Description Of Error; if code==0 this should be NULL.
 	 * 			userInfo: userId, age, gender, blogNum, phone
 	 */
-	@RequestMapping("/getuserbynameandpassword")
+	@RequestMapping(value = "/getuserbynameandpassword", method = RequestMethod.GET)
 	public GetUserResponse getUserByNameAndPassword(@RequestParam String name,
 													@RequestParam String password) {
 		GetUserResponse getUserResponse = new GetUserResponse();
@@ -286,6 +288,7 @@ public class UserController {
 		getUserResponse.setGender(user.getGender());
 		getUserResponse.setName(user.getName());
 		getUserResponse.setPhone(user.getPhone());
+		getUserResponse.setAge(user.getAge());
 		getUserResponse.setUserId(user.getUserId());
 		getUserResponse.setBlogNum(user.getBlogNum());
 		return getUserResponse;

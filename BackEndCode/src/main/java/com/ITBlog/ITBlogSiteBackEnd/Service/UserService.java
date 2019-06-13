@@ -155,4 +155,14 @@ public class UserService {
 		User user = this.userRepository.findByNameAndPassword(name, password);
 		return user;
 	}
+	
+	/**
+	 * 根据用户id返回用户类型 0管理员 1正常用户 2关闭用户
+	 * @param userId
+	 * @return
+	 */
+	@Transactional(propagation = Propagation.REQUIRED)
+	public int getTypeByUserId(long userId) {
+		return this.userRepository.findByUserId(userId).getType();
+	}
 }
