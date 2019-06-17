@@ -237,4 +237,37 @@ public class BlogController {
 		return blogResponse;
 	}
 
+	/**
+	 * 按最新时间返回博客
+	 */
+	@GetMapping("/findbytime")
+	public FindBlogResponse FindBlogByTime() {
+		FindBlogResponse blogResponse = new FindBlogResponse();
+		List<Blog> blog = this.blogService.findBlogByTime();
+		
+		if(blog.size() == 0) {
+			blogResponse.setCode(1);
+			blogResponse.setOtherInformation("NULL Value!");
+			return blogResponse;
+		}
+		else {
+			blogResponse.setCode(0);
+			blogResponse.setFindBlog(blog);
+		}
+			
+		return blogResponse;
+	}
+	
+	/**
+	 * 根据作者id查找博客
+	 */
+	@GetMapping("/findbyuserid")
+	public FindBlogResponse FindBlogByUserId(@RequestParam long userId) {
+		FindBlogResponse blogResponse = new FindBlogResponse();
+		List<Blog> blog = this.blogService.findBlogByUserId(userId);
+		
+		blogResponse.setCode(0);
+		blogResponse.setFindBlog(blog);
+		return blogResponse;
+	}
 }

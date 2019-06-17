@@ -43,6 +43,12 @@ public interface BlogRepository extends JpaRepository<Blog, Long> {
 	int updateContext(@Param ("context")String context, @Param ("blogId") long blogId);
 	
 	/**
+	 * 通过作者id查找博客
+	 */
+	@Query("select blog from Blog blog where blog.authorId=:authorId")
+	List<Blog> findBlogByUserId(@Param ("authorId")long authorId);
+	
+	/**
 	 * 更新发布时间
 	 */
 	@Modifying
@@ -63,5 +69,9 @@ public interface BlogRepository extends JpaRepository<Blog, Long> {
 	@Query(value="UPDATE Blog blog SET blog.commentsNum=blog.commentsNum+1 WHERE blog.blogId=:blogId")
 	int updateCommentsNum(@Param ("blogId") long blogId);
 	
-
+	/**
+	 * 按最新时间返回博客
+	 */
+	@Query("select blog from Blog blog order by blog.time desc")
+	List<Blog> findBlogByTime();
 }

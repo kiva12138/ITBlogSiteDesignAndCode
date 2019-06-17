@@ -136,4 +136,22 @@ public class BlogService{
 		this.blogRepository.deleteById(blogId);
 		return 0;
 	}
+	
+	/**
+	 * 按最新时间返回博客
+	 */
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<Blog> findBlogByTime() {
+		List<Blog> blog = this.blogRepository.findBlogByTime();
+		return blog;
+	}
+	
+	/**
+	 * 根据作者id返回博客 不保证返回非空
+	 */
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<Blog> findBlogByUserId(long authorId) {
+		List<Blog> blog = this.blogRepository.findBlogByUserId(authorId);
+		return blog;
+	}
 }
