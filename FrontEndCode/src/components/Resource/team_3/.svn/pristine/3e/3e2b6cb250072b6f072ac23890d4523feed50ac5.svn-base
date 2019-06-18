@@ -1,0 +1,103 @@
+API路径：36.96.64.203:8080/ITBlogSiteBackEnd/
+	
+用户接口：
+	增加用户：	/user/adduser 		参数：name, gender, age, password, phone		Method: POST
+			返回值：code: 0-Correct 1-EmptyValue 2-ServiceError.
+		              	description:  Description Of Error; if code==0 this should be NULL.
+
+	删除用户：	/user/deleteuser		参数：userId					Method: GET
+			返回值：code: 0-Correct 1-EmptyValue 2-ServiceError.
+		              	description:  Description Of Error; if code==0 this should be NULL.
+
+	关闭账户：	/user/closeaccount		参数：userId					Method: GET
+			返回值：code: 0-Correct 1-EmptyValue 2-ServiceError.
+		              	description:  Description Of Error; if code==0 this should be NULL.
+
+	更新密码：	/user/updatepassword 	参数：userId, password				Method: POST
+			返回值：code: 0-Correct 1-EmptyValue 2-ServiceError.
+		              	description:  Description Of Error; if code==0 this should be NULL.
+
+	更新年龄：	/user/updateage		参数：userId, age					Method: POST
+			返回值：code: 0-Correct 1-EmptyValue 2-ServiceError.
+		              	description:  Description Of Error; if code==0 this should be NULL.
+
+	根据用户ID获取用户信息：		/user/getuserbyuserid			参数：userId		Method: GET
+			返回值：code: 0-Correct 1-EmptyValue 2-ServiceError.
+	 	              	description: Description Of Error; if code==0 this should be NULL.
+	 	              	userInfo: userId, age, gender, blogNum, phone
+
+	根据用户Name和密码获取用户信息：	/user/getuserbynameandpassword		参数：name, password	Method: GET
+			返回值：code: 0-Correct 1-EmptyValue 2-ServiceError.
+	 	              	description: Description Of Error; if code==0 this should be NULL.
+	 	              	userInfo: userId, age, gender, blogNum, phone
+
+博客接口：
+	添加博客：/blog/addblog，Post
+		参数：title，context，authorId，time
+		返回值：code：0-Correct，1-Empty Value，2-Service Error
+				otherInformation：Empty Value！；Service Error！
+	
+	删除博客：/blog/deleteblog，Get
+		参数：blogId
+		返回值：code：0-Correct，1-Empty Value，2-Service Error
+				otherInformation：Empty Value！；Service Error！
+
+	更新博客标题：/blog/updatetitle，Post
+		参数：blogId，title
+		返回值：code：0-Correct，1-Empty Value，2-Service Error
+				otherInformation：Empty Value！；Service Error！
+
+	更新博客内容：/blog/updatecontext，Post
+		参数：blogId，context
+		返回值：code：0-Correct，1-Empty Value，2-Service Error
+				otherInformation：Empty Value！；Service Error！
+
+	更新发布时间：/blog/updatetime，Post
+		参数：blogId，time
+		返回值：code：0-Correct，1-Empty Value，2-Service Error
+				otherInformation：Empty Value！；Service Error！
+
+	更新阅读数：/blog/updatereadnum，Post
+		参数：blogId，readNum
+		返回值：code：0-Correct，1-Error Value，2-Service Error
+				otherInformation：Error Value！；Service Error！
+
+	更新阅读数：/blog/updatecommentsnum，Post
+		参数：blogId，commentsNum
+		返回值：code：0-Correct，1- Error Value，2-Service Error
+				otherInformation：Error Value！；Service Error！
+
+	根据id查找博客：/blog/find，Get
+		参数：blogId
+		返回值：code：0-Correct，1- NULL Value
+				otherInformation：NULL Value！
+				findBlog：查找到的博客，类型为Blog
+
+	根据标题查找博客：/blog/findlikebytitle，Get
+		参数：title
+		返回值：code：0-Correct
+				findBlog：查找到的博客集合，类型为List<Blog>
+
+评论接口:
+	增加评论：/comment/addcomment  参数：blogId, authorId, content, time
+	返回值：code 0-Correct code 1-authorId/blogId empty		
+ 		code 2 -content empty	code 3-ServiceError
+		Description: Description Of Error, if code == 0 this should be NULL
+	删除评论：	/comment/deletecomment 参数： commentId
+	返回值：code 0-Correct code 1- empty value	code 2 -ServiceError
+		Description: Description Of Error, if code == 0 this should be NULL
+	更新评论  /comment/updatecomment 参数：commentId blogId content
+	返回值：code 0-Correct code 1- empty value	code 2 -ServiceError
+		Description: Description Of Error, if code == 0 this should be NULL
+	通过评论ID查询评论  /comment/getcommentbycommentid/  参数：blogId commentId
+	返回值：code 0-Correct code 1- empty value	code 2 -ServiceError
+		Description: Description Of Error, if code == 0 this should be NULL
+	通过博客ID查询评论  /comment/getcommentbyblog/  参数：blogId
+	返回值：code 0-Correct code 1- empty value	code 2 -ServiceError
+		comments: List类型
+	根据用户查询评论  /comment/getcommentbyauthor/  参数：authorId
+	返回值：code 0-Correct code 1- empty value	code 2 -ServiceError
+		comments: List类型
+
+
+

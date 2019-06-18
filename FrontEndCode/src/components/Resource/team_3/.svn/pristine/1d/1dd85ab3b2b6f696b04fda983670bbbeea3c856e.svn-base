@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: ITBlogSiteBackEnd
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: 夜流歌
+Implementation-Vendor-Id: com.ITBlog
+Build-Jdk: 1.8.0_144
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/ITBlogSiteBackEnd
+Created-By: Maven Integration for Eclipse
+
